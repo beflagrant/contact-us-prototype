@@ -13,9 +13,7 @@
     <% @intakes.each do |intake| %>
       <tr>
         <td>from: <%= intake.email %></td>
-        <td><%= link_to 'Show', intake %></td>
-        <td><%= link_to 'Edit', edit_intake_path(intake) %></td>
-        <td><%= link_to 'Destroy', intake, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_intake_path(intake) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -23,4 +21,3 @@
 
 <br>
 
-<%= link_to 'New Intake', new_intake_path %>

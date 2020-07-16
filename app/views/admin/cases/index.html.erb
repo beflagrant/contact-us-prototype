@@ -15,7 +15,7 @@
   <tbody>
     <% @admin_cases.each do |admin_case| %>
       <tr>
-        <td><%= admin_case.id %></td>
+        <td><%= admin_case.intake.name %> (<%= admin_case.intake.email %>)</td>
         <td><%= admin_case.created_at %></td>
         <td><%= admin_case.messages.count %></td>
         <td><%= link_to 'Show', admin_case %></td>
@@ -25,7 +25,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Admin Case', new_admin_case_path %>
