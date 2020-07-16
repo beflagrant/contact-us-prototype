@@ -1,5 +1,13 @@
 # README
 
+This is a trivial intake / case management app.
+
+## Up and Running
+
+* Check out this repo
+* `rails webpack:install`
+* `rails db:create:all db:migrate`
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

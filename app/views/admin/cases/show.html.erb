@@ -1,0 +1,23 @@
+<p>Created: <%= @admin_case.created_at %></p>
+
+<p>Status: </p>
+
+<%= render @admin_case.messages %>
+
+<h2>Add Note</h2>
+
+<%= form_with(model: @admin_case.messages.new, url: admin_case_messages_path(@admin_case)) do |form| %>
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.rich_text_area :body %>
+  </div>
+  <div class="field">
+    <button type="submit" class="btn btn-success">Save</button>
+  </div>
+<% end %>
+
+send or make a note
+
+<%= link_to 'Edit', edit_admin_case_path(@admin_case) %> |
+<%= link_to 'Back', admin_cases_path %>
+

@@ -1,0 +1,18 @@
+<% if intake.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(intake.errors.count, "error") %> prohibited this intake from being saved:</h2>
+
+    <ul>
+      <% intake.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= simple_form_for intake do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :message %>
+  <%= f.button :submit %>
+<% end %>
