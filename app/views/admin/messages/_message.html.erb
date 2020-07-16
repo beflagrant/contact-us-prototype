@@ -1,11 +1,13 @@
-<div class="message__<%= message.direction %>">
-  <div class="sent-by">
-    Sent by: [some person | client]
-  </div>
-  <div class="sent-at">
-    Sent at: [<%= message.created_at %>]
-  </div>
-  <div class="content">
-    <%= message.body %>
+<div class="card message__<%= message.direction %>">
+  <div class="card-body">
+    <div class="sent-by card-title">
+      Sent by: [some person | client]
+    </div>
+    <div class="sent-at card-subtitle">
+      Sent at: [<%= message.created_at %>]
+    </div>
+    <div class="content">
+      <p><%= message.body %></p>
+    </div>
   </div>
 </div>

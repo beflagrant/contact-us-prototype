@@ -10,7 +10,16 @@
   </head>
 
   <body>
+    <nav class="nav justify-content-end">
+      <!-- active and disabled are also possible classes -->
+      <%= link_to "contact us!", new_intake_path, class: 'nav-link' %>
+      <%= link_to "intakes", admin_intakes_path, class: 'nav-link' %>
+      <%= link_to "cases", admin_cases_path, class: 'nav-link' %>
+      <%= link_to "sign in", "#", class: 'nav-link' %>
+    </nav>
     <div id="notice" class="notice"><%= notice %></div>
+    <div class=container>
     <%= yield %>
+    </div>
   </body>
 </html>

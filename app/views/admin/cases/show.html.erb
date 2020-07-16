@@ -1,23 +1,33 @@
-<p>Created: <%= @admin_case.created_at %></p>
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title"><%= @admin_case.intake.name %> (<%= @admin_case.intake.email %>)</h2>
+    <h3 class="card-subtitle"><%= @admin_case.created_at %></h3>
+  </div>
+  <ul class='list-group'>
+    <li class='list-group-item'><span>Status:</span><%= @admin_case.aasm.current_state %></li>
+  </ul>
+</div>
 
-<p>Status: </p>
 
 <%= render @admin_case.messages %>
 
-<h2>Add Note</h2>
-
-<%= form_with(model: @admin_case.messages.new, url: admin_case_messages_path(@admin_case)) do |form| %>
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.rich_text_area :body %>
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: @admin_case.messages.new, url: admin_case_messages_path(@admin_case)) do |form| %>
+      <div class="field">
+        <%= form.rich_text_area :body %>
+      </div>
+      <div class="field">
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <button type="submit" class="btn btn-success">Save</button>
+</div>
+
+<div class="card">
+  <div class="card-body justify-content-end">
+    <%= link_to 'edit', edit_admin_case_path(@admin_case), class: 'btn card-link' %>
+    <%= link_to 'back to list', admin_cases_path, class: 'btn card-link' %>
   </div>
-<% end %>
-
-send or make a note
-
-<%= link_to 'Edit', edit_admin_case_path(@admin_case) %> |
-<%= link_to 'Back', admin_cases_path %>
+</div>
 
