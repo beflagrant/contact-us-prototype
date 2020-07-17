@@ -4,12 +4,13 @@ class Admin::CasesController < ApplicationController
   # GET /admin/cases
   # GET /admin/cases.json
   def index
-    @admin_cases = Admin::Case.all
+    @admin_cases = Admin::Case.where.not(aasm_state: 'closed')
   end
 
   # GET /admin/cases/1
   # GET /admin/cases/1.json
   def show
+    @admin_case.review! if @admin_case.open?
   end
 
   # GET /admin/cases/new
@@ -54,9 +55,9 @@ class Admin::CasesController < ApplicationController
   # DELETE /admin/cases/1
   # DELETE /admin/cases/1.json
   def destroy
-    @admin_case.destroy
+    @admin_case.close!
     respond_to do |format|
-      format.html { redirect_to admin_cases_url, notice: 'Case was successfully destroyed.' }
+      format.html { redirect_to admin_cases_url, notice: 'Case closed!' }
       format.json { head :no_content }
     end
   end

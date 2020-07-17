@@ -1,6 +1,10 @@
-  <div class="client">
-    <%= intake.name %> (<%= intake.email %>)
+<div class="card mb-3">
+  <div class="card-header">
+      from: <%= intake.sender %> on: <%= intake.created_at %>
   </div>
-  <div class="content">
-    <%= intake.message %>
+  <div class="card-body">
+    <div class="content">
+      <p><%= intake.message %></p>
+    </div>
   </div>
+</div>

@@ -2,11 +2,12 @@ class Admin::Case < ApplicationRecord
   include AASM
 
   aasm do
-    state :new, initial: true
+    state :open, initial: true
     state :reviewed, :responded, :closed
 
     event :review do
-      transitions from: :new, to: :reviewed
+      transitions from: :open, to: :reviewed
+      transitions from: :reviewed, to: :reviewed
     end
 
     event :respond do
@@ -21,5 +22,13 @@ class Admin::Case < ApplicationRecord
   end
 
   belongs_to :intake
-  has_many :messages
+  has_many :messages, -> { order  'created_at desc' }
+
+  before_create :generate_token
+
+  private
+
+  def generate_token
+    self.token = SecureRandom.urlsafe_base64(10)
+  end
 end

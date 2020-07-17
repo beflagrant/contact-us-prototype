@@ -1,17 +1,11 @@
 class Admin::Message < ApplicationRecord
-  enum direction: [:internal, :in, :out]
+  enum direction: %i[internal in out]
   has_rich_text :body
   belongs_to :case
 
   def sender
-    case direction.to_sym
-    when :internal
-      "internal note"
-    when :in
-      self.case.intake.name
-    when :out
-      "admin user"
-    end
+    return 'internal note' if internal?
+    return self.case.intake.name if in?
+    return 'admin user' if out?
   end
 end
-

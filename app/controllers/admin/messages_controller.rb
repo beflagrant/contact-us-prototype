@@ -8,6 +8,7 @@ class Admin::MessagesController < ApplicationController
     @admin_message = @admin_case.messages.new(message_params)
     respond_to do |format|
       if @admin_message.save
+        @admin_case.respond! if @admin_message.out?
         format.html { redirect_to @admin_case, notice: 'Message was successfully added.' }
         # format.json { render :show, status: :ok, location: @admin_case }
       else

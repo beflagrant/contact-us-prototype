@@ -3,9 +3,13 @@ class Intake < ApplicationRecord
 
   after_create :ensure_case
 
-private
+  def sender
+    "#{name} (#{email})"
+  end
+
+  private
+
   def ensure_case
     Admin::Case.find_or_create_by!(intake_id: id)
   end
-
 end

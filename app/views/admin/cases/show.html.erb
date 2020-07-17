@@ -1,17 +1,25 @@
-<div class="card">
-  <div class="card-body">
-    <h2 class="card-title"><%= @admin_case.intake.name %> (<%= @admin_case.intake.email %>)</h2>
-    <h3 class="card-subtitle"><%= @admin_case.created_at %></h3>
+<%= render @admin_case.intake %>
+
+<div class="card mb-3">
+  <div class="card-header">
+      from: <%= @admin_case.intake.sender %> on: <%= @admin_case.intake.created_at %>
   </div>
-  <ul class='list-group'>
-    <li class='list-group-item'><span>Status:</span><%= @admin_case.aasm.current_state %></li>
-  </ul>
+  <div class="card-body">
+    <p>original message:</p>
+
+    <%= @admin_case.intake.message %>
+
+    <hr/>
+
+    <%= button_to 'close', admin_case_path(@admin_case), method: :delete, class: 'btn btn-primary card-link' %>
+  </div>
 </div>
 
 
-<%= render @admin_case.messages %>
-
-<div class="card">
+<div class="card mb-3">
+  <div class="card-header">
+    Add a Message
+  </div>
   <div class="card-body">
     <%= form_with(model: @admin_case.messages.new, url: admin_case_messages_path(@admin_case)) do |form| %>
       <div class="field">
@@ -29,9 +37,12 @@
 </div>
 
 <div class="card">
-  <div class="card-body justify-content-end">
-    <%= link_to 'edit', edit_admin_case_path(@admin_case), class: 'btn card-link' %>
-    <%= link_to 'back to list', admin_cases_path, class: 'btn card-link' %>
+  <div class="card-body">
+    <ul class="justify-content-end">
+    </ul>
   </div>
 </div>
+
+<%= render @admin_case.messages %>
+
 

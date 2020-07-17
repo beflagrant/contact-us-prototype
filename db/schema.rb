@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_192457) do
+ActiveRecord::Schema.define(version: 2020_07_17_182430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_07_16_192457) do
     t.string "aasm_state"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "token", null: false
   end
 
   create_table "admin_messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
