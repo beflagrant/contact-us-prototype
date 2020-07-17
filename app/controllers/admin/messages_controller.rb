@@ -41,6 +41,6 @@ class Admin::MessagesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def message_params
-    params.require(:admin_message).permit(:body, :case_id)
+    params.require(:admin_message).permit(:body, :case_id, :direction)
   end
 end

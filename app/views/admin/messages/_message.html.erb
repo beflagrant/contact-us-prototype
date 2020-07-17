@@ -1,7 +1,7 @@
 <div class="card message__<%= message.direction %>">
   <div class="card-body">
     <div class="sent-by card-title">
-      Sent by: [some person | client]
+      Sent by: <%= message.sender %>
     </div>
     <div class="sent-at card-subtitle">
       Sent at: [<%= message.created_at %>]
