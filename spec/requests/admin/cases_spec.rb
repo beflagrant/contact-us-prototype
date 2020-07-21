@@ -33,97 +33,26 @@ RSpec.describe "/admin/cases", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      case = Admin::Case.create! valid_attributes
+      admin_case = Admin::Case.create! valid_attributes
       get admin_case_url(admin_case)
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /new" do
-    it "renders a successful response" do
-      get new_admin_case_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "render a successful response" do
-      case = Admin::Case.create! valid_attributes
+      admin_case = Admin::Case.create! valid_attributes
       get edit_admin_case_url(admin_case)
-      expect(response).to be_successful
-    end
-  end
-
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Admin::Case" do
-        expect {
-          post admin_cases_url, params: { admin_case: valid_attributes }
-        }.to change(Admin::Case, :count).by(1)
-      end
-
-      it "redirects to the created admin_case" do
-        post admin_cases_url, params: { admin_case: valid_attributes }
-        expect(response).to redirect_to(admin_case_url(@admin_case))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "does not create a new Admin::Case" do
-        expect {
-          post admin_cases_url, params: { admin_case: invalid_attributes }
-        }.to change(Admin::Case, :count).by(0)
-      end
-
-      it "renders a successful response (i.e. to display the 'new' template)" do
-        post admin_cases_url, params: { admin_case: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
-
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested admin_case" do
-        case = Admin::Case.create! valid_attributes
-        patch admin_case_url(admin_case), params: { admin_case: new_attributes }
-        case.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the admin_case" do
-        case = Admin::Case.create! valid_attributes
-        patch admin_case_url(admin_case), params: { admin_case: new_attributes }
-        case.reload
-        expect(response).to redirect_to(admin_case_url(case))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        case = Admin::Case.create! valid_attributes
-        patch admin_case_url(admin_case), params: { admin_case: invalid_attributes }
-        expect(response).to be_successful
-      end
+      expect(response).to be_not_found
     end
   end
 
   describe "DELETE /destroy" do
     it "destroys the requested admin_case" do
-      case = Admin::Case.create! valid_attributes
+      admin_case = Admin::Case.create! valid_attributes
       expect {
         delete admin_case_url(admin_case)
       }.to change(Admin::Case, :count).by(-1)
-    end
-
-    it "redirects to the admin_cases list" do
-      case = Admin::Case.create! valid_attributes
-      delete admin_case_url(admin_case)
-      expect(response).to redirect_to(admin_cases_url)
     end
   end
 end

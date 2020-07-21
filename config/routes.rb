@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :cases do
+    resources :cases, only: [:index, :show, :destroy]  do
       resources :messages, only: [:create, :edit, :update]
     end
     resources :intakes, only: [:index, :show]
