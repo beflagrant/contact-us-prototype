@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, controllers: { omniauth_callbacks: 'admin/omniauth_callbacks' }
+  devise_scope :admin_user do
+    get 'admin/sign_in', to: 'admin/sessions#new', as: :new_admin_user_session
+    get 'admin/sign_out', to: 'admin/sessions#destroy', as: :destroy_admin_user_session
+  end
   namespace :admin do
     resources :cases do
       resources :messages, only: [:create, :edit, :update]
