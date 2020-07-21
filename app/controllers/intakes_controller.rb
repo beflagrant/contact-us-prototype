@@ -1,4 +1,5 @@
 class IntakesController < ApplicationController
+  skip_before_action :authenticate_admin_user!
   before_action :set_intake, only: [:show]
 
   # GET /intakes
