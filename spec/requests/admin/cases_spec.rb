@@ -16,6 +16,7 @@ RSpec.describe "/admin/cases", type: :request do
   # Admin::Case. As you add validations to Admin::Case, be sure to
   # adjust the attributes here as well.
   let(:admin_case) { create :admin_case }
+  before { sign_in FactoryBot.create(:admin_user) }
 
   describe "GET /index" do
     it "renders a successful response" do
