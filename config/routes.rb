@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get 'admin/sign_out', to: 'admin/sessions#destroy', as: :destroy_admin_user_session
   end
   namespace :admin do
-    resources :cases do
+    resources :cases, only: [:index, :show, :destroy]  do
       resources :messages, only: [:create, :edit, :update]
     end
     resources :intakes, only: [:index, :show]

@@ -8,7 +8,11 @@ class Admin::MessagesController < ApplicationController
     @admin_message = @admin_case.messages.new(message_params)
     respond_to do |format|
       if @admin_message.save
-        @admin_case.respond! if @admin_message.out?
+        if @admin_message.out?
+          @admin_case.respond!
+          Admin::CaseMessageMailer.with(kase: @kase, message: @admin_message).message_email.deliver_later
+        end
+
         format.html { redirect_to @admin_case, notice: 'Message was successfully added.' }
         # format.json { render :show, status: :ok, location: @admin_case }
       else
@@ -19,6 +23,7 @@ class Admin::MessagesController < ApplicationController
   end
 
   def update
+    # TODO: messages are not editable unless they are internal
     respond_to do |format|
       if @admin_message.update(message_params)
         format.html { redirect_to @admin_case, notice: 'Message was successfully updated.' }
