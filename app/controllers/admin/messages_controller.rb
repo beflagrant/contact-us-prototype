@@ -1,4 +1,4 @@
-class Admin::MessagesController < ApplicationController
+class Admin::MessagesController < AdminController
   before_action :set_admin_case
   before_action :set_message, only: [:edit, :update]
 
