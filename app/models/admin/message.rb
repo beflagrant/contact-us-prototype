@@ -8,4 +8,10 @@ class Admin::Message < ApplicationRecord
     return self.case.intake.name if in?
     return 'admin user' if out?
   end
+
+  private
+
+  def editable?
+    internal?
+  end
 end

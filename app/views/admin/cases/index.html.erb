@@ -9,7 +9,7 @@
       <th scope="col">Date</th>
       <th scope="col">Messages</th>
       <th scope="col">Status</th>
-      <th colspan="3" scope="col">Actions</th>
+      <th colspan="2" scope="col">Actions</th>
     </tr>
   </thead>
 
@@ -22,7 +22,6 @@
         <td><%= admin_case.messages.count %></td>
         <td><%= admin_case.aasm.current_state %></td>
         <td><%= link_to 'Show', admin_case %></td>
-        <td><%= link_to 'Edit', edit_admin_case_path(admin_case) %></td>
         <td><%= link_to 'Destroy', admin_case, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
