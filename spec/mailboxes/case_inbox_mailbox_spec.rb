@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe CaseInboxMailbox, type: :mailbox do
-  pending "add some examples to (or delete) #{__FILE__}"
-
   let(:email) { 'from-address@example.com' }
   let(:intake) { create :intake, email: email }
   let(:admin_case) { create :admin_case, intake: intake }
@@ -39,7 +37,4 @@ RSpec.describe CaseInboxMailbox, type: :mailbox do
       end
     end
   end
-
-
-
 end
