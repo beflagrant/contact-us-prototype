@@ -10,7 +10,8 @@ class Admin::MessagesController < AdminController
       if @admin_message.save
         if @admin_message.out?
           @admin_case.respond!
-          Admin::CaseMessageMailer.with(kase: @kase, message: @admin_message).message_email.deliver_later
+          Admin::CaseMessageMailer.with(kase: @admin_case, message: @admin_message)
+            .message_email.deliver_later
         end
 
         format.html { redirect_to @admin_case, notice: 'Message was successfully added.' }

@@ -1,5 +1,3 @@
-<%= render @admin_case.intake %>
-
 <div class="card mb-3">
   <div class="card-header">
       from: <%= @admin_case.intake.sender %> on: <%= @admin_case.intake.created_at %>
@@ -21,28 +19,20 @@
     Add a Message
   </div>
   <div class="card-body">
-    <%= form_with(model: @admin_case.messages.new, url: admin_case_messages_path(@admin_case)) do |form| %>
+    <%= form_with(model: Admin::Message.new, url: admin_case_messages_path(@admin_case)) do |form| %>
       <div class="field">
         <%= form.rich_text_area :body %>
       </div>
-      <div class="checkbox">
-        <label><%= form.check_box(:direction, {}, 'out', 'internal') %>
-        send to client</label>
-      </div>
       <div class="field">
-        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-success" name="admin_message[direction]", value="out">
+          Send To Client
+        </button>
+        <button type="submit" class="btn btn-success" name="admin_message[direction]", value="internal">
+          Save Internal Note
+        </button>
       </div>
     <% end %>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-body">
-    <ul class="justify-content-end">
-    </ul>
-  </div>
-</div>
-
 <%= render @admin_case.messages %>
-
-
