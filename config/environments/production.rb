@@ -66,12 +66,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
-    :user_name => ENV['SENDGRID_USERNAME'],
-    :password => ENV['SENDGRID_PASSWORD'],
-    :domain => 'beflagrant.com',
-    :address => 'smtp.sendgrid.net',
+    :user_name => Rails.application.credentials.sendinblue[:email],
+    :password => Rails.application.credentials.sendinblue[:password],
+    :address => 'smtp-relay.sendinblue.com',
     :port => 587,
-    :authentication => :plain,
+    :authentication => :login,
     :enable_starttls_auto => true
   }
   config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
