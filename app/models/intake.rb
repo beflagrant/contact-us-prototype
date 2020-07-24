@@ -1,5 +1,5 @@
 class Intake < ApplicationRecord
-  has_one :case
+  has_one :case, class_name: "Admin::Case"
 
   after_create :ensure_case
 

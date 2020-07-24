@@ -23,6 +23,7 @@ class IntakesController < ApplicationController
 
     respond_to do |format|
       if @intake.save
+        IntakeMailer.with(intake: @intake).triage_email.deliver_later
         format.html { redirect_to @intake, notice: 'Intake was successfully created.' }
         format.json { render :show, status: :created, location: @intake }
       else

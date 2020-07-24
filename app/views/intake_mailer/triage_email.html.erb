@@ -1,0 +1,11 @@
+<div>
+  <p>
+    <%= @intake.name %> with email: <%= @intake.email %> sent the following message:
+  </p>
+  <p>
+    <%= @intake.message %>
+  </p>
+  <p>
+    You can manage the case at <%= link_to(@url, @url) %>
+  </p>
+</div>
