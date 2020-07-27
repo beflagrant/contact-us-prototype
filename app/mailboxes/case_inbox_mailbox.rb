@@ -1,6 +1,7 @@
 class CaseInboxMailbox < ApplicationMailbox
   before_processing :find_case
   def process
+    logger.error("CASE_INBOX: kase? #{@kase.inspect}")
     return unless @kase
     @kase.messages.create(body: body, direction: :in)
   end
@@ -8,6 +9,7 @@ class CaseInboxMailbox < ApplicationMailbox
   private
 
   def find_case
+    logger.error("CASE_INBOX: received mail! #{mail.inspect}")
     intake_ids = Intake.where(email: mail.from.first).map(&:id)
     @kase = Admin::Case.find_by(token: extract_token(mail), intake_id: intake_ids)
   end
