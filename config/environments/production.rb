@@ -62,18 +62,18 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "contact_us_prototype_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.smtp_settings = {
-    :user_name => Rails.application.credentials.sendinblue[:email],
-    :password => Rails.application.credentials.sendinblue[:password],
-    :address => 'smtp-relay.sendinblue.com',
-    :port => 587,
-    :authentication => :login,
-    :enable_starttls_auto => true
-  }
   config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
   config.action_controller.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
+  config.action_mailer.smtp_settings = {
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain         => 'www.beflagrant.com',
+    :authentication => :plain,
+  }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailbox.ingress = :mailgun
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

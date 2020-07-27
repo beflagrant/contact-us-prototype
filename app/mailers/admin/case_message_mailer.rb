@@ -10,9 +10,7 @@ class Admin::CaseMessageMailer < ApplicationMailer
     end
     mail(
       to: @kase.intake.email,
-      from: "#{@kase.token}@example.com",
-      body: @message.body.to_s,
-      content_type: "text/html",
+      from: "#{@kase.token}@sandboxfd8dce1636144836a50674167a7f71f2.mailgun.org",
     )
   end
 end
